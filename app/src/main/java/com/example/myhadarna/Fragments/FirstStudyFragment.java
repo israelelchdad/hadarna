@@ -11,17 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.myhadarna.Adapters.ViewPagerDataLearningAdapter;
 import com.example.myhadarna.Adapters.ViewPagerTypeStudyAdapter;
 import com.example.myhadarna.R;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
 
 public class FirstStudyFragment extends Fragment {
+    public static final String TAG = FirstStudyFragment.class.getSimpleName();
     View view;
     private ViewPager myViewpajer;
-    private ViewPagerTypeStudyAdapter viewPagerTypeStudyAdapter;
-    private ArrayList<Fragment> myListTypesStudy = new ArrayList<>();
+    private ViewPagerDataLearningAdapter viewPagerDataLearningAdapter;
+    private ArrayList<Fragment>myListDataLernen = new ArrayList<>();
     private OnFragmentInteractionListener mListener;
 
     public FirstStudyFragment() {
@@ -32,7 +35,6 @@ public class FirstStudyFragment extends Fragment {
     public static FirstStudyFragment newInstance() {
         FirstStudyFragment fragment = new FirstStudyFragment();
         Bundle args = new Bundle();
-
         fragment.setArguments(args);
         return fragment;
     }
@@ -48,9 +50,28 @@ public class FirstStudyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first_study, container, false);
+        
+        view=inflater.inflate(R.layout.fragment_first_study, container, false);
+        initMyViewPageer();
+        return view;
     }
+
+    private void initMyViewPageer() {
+        myViewpajer = view.findViewById(R.id.FFS_viewpager);
+        viewPagerDataLearningAdapter = new ViewPagerDataLearningAdapter(getActivity().getSupportFragmentManager(),initMyListStudy(),getContext());
+        myViewpajer.setAdapter(viewPagerDataLearningAdapter);
+        TabLayout tabLayout = view.findViewById(R.id.FFS_tab_layout);
+//        tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        tabLayout.setupWithViewPager(myViewpajer, true);
+    }
+    private ArrayList<Fragment> initMyListStudy() {
+        myListDataLernen.add(shewLernenRvFragmen.newInstance());
+        myListDataLernen.add(shewLernenRvFragmen.newInstance());
+        myListDataLernen.add(shewLernenRvFragmen.newInstance());
+        return myListDataLernen;
+
+    }
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

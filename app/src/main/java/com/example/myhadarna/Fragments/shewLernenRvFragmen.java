@@ -21,7 +21,7 @@ public class shewLernenRvFragmen extends Fragment {
     }
 
 
-    public static shewLernenRvFragmen newInstance(String param1, String param2) {
+    public static shewLernenRvFragmen newInstance() {
         shewLernenRvFragmen fragment = new shewLernenRvFragmen();
         Bundle args = new Bundle();
 

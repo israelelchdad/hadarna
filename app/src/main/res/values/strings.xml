@@ -17,4 +17,6 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="firstStudy">firstStsudy</string>
+    <string name="tow_study">tow study</string>
+    <string name="three_study">three study</string>
 </resources>
